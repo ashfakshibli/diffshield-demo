@@ -20,7 +20,7 @@ def validate_candidates(candidates: List[Dict[str, Any]], notes: str) -> Dict[st
     model = os.environ.get("OPENAI_MODEL", "gpt-4.1-mini")
 
     prompt = {
-        "task": "Validate repo threat-model findings for a compact security demo.",
+        "task": "Validate repo threat-model findings for a compact security analysis workflow.",
         "notes": notes,
         "instructions": [
             "Do not invent new findings.",

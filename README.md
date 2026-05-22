@@ -1,19 +1,19 @@
 # DiffShield
 
-DiffShield is a lightweight repo threat modeler built as a compact security systems demo.
+DiffShield is a lightweight repo threat modeler built as a compact security systems example.
 
-It scans a local target repo, extracts a tiny world model from code and deployment artifacts, generates candidate attack paths, validates findings, and suggests remediations.
+It scans a local target repo or public GitHub repo, extracts a tiny world model from code and deployment artifacts, generates candidate attack paths, validates findings, and suggests remediations.
 
 ## Stack
 
 - Next.js + TypeScript UI
 - Python analyzer service
-- SQLite for the local runnable demo
-- Postgres schema and Docker Compose path included for deployment-oriented discussion
+- SQLite for the local runnable flow
+- Postgres-backed hosted mode for deployment
 
-## Why SQLite in the local demo
+## Why SQLite locally
 
-The current machine does not have Docker or PostgreSQL installed, so the runnable local demo uses SQLite while preserving a Postgres-ready schema and Docker Compose layout under `infra/`.
+The local flow keeps SQLite for quick startup while the hosted deployment path can switch to Postgres by setting `DATABASE_URL`.
 
 ## Quick start
 
@@ -42,7 +42,7 @@ npm run dev
 
 5. Run the built-in scan against:
 
-`/Users/ashfak/Desktop/Jobs/Latent Defense/diffshield-vuln-demo`
+`https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo`
 
 ## Demo flow
 
@@ -56,10 +56,21 @@ npm run dev
   - remediations
 - trace events
 
+## Deploy branch
+
+The `deploy/heroku` branch adds:
+
+- Heroku-friendly runtime ports
+- optional Postgres persistence through `DATABASE_URL`
+- public GitHub repo download for hosted scans
+- GitHub Actions auto-deploy to Heroku on branch pushes
+
+The local `main` branch remains the simplest local demo path.
+
 ## Repos
 
 - Product repo: `diffshield-demo`
-- Toy target repo: `diffshield-vuln-demo`
+- Sample target repo: `diffshield-vuln-demo`
 
 ## Test commands
 

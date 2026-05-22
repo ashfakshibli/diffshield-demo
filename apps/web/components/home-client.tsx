@@ -4,14 +4,14 @@ import { useRouter } from "next/navigation";
 import { startTransition, useState } from "react";
 
 const defaultRepoPath =
-  process.env.NEXT_PUBLIC_DEMO_TARGET_REPO ??
-  "/Users/ashfak/Desktop/Jobs/Latent Defense/diffshield-vuln-demo";
+  process.env.NEXT_PUBLIC_DEMO_TARGET_REPO_REF ??
+  "https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo";
 
 export function HomeClient() {
   const router = useRouter();
   const [repoPath, setRepoPath] = useState(defaultRepoPath);
   const [notes, setNotes] = useState(
-    "Security demo scan: local toy repo with an exposed admin route, broad env secrets, a root container, and a public internal port."
+    "Security scan: sample repo with an exposed admin route, broad env secrets, a root container, and a public internal port."
   );
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
@@ -53,7 +53,7 @@ export function HomeClient() {
       <section className="hero">
         <div className="hero-grid">
           <div>
-            <div className="eyebrow">DiffShield demo</div>
+            <div className="eyebrow">DiffShield</div>
             <h1>Threat model a repo in one scan.</h1>
             <p>
               DiffShield ingests code and deployment artifacts, builds a tiny world model,
@@ -75,7 +75,7 @@ export function HomeClient() {
                 onClick={() => launchScan(false)}
                 type="button"
               >
-                Scan the path below
+                Scan the target below
               </button>
             </div>
             {error ? <p style={{ color: "var(--red)" }}>{error}</p> : null}
@@ -116,16 +116,16 @@ export function HomeClient() {
         <section className="panel">
           <h2>Launch a scan</h2>
           <p>
-            Use the built-in vulnerable repo for a quick security walkthrough. You can also point
-            the analyzer at another local repo path without changing the product code.
+            Use the built-in sample repo for a quick security walkthrough. You can also point
+            the analyzer at another local repo path or a public GitHub repository URL.
           </p>
 
           <div className="scan-form">
-            <label htmlFor="repoPath">Target repo path</label>
+            <label htmlFor="repoPath">Target repo path or GitHub URL</label>
             <input
               id="repoPath"
               onChange={(event) => setRepoPath(event.target.value)}
-              placeholder="/absolute/path/to/target/repo"
+              placeholder="https://github.com/org/repo or /absolute/path/to/repo"
               value={repoPath}
             />
 
@@ -176,7 +176,7 @@ export function HomeClient() {
         </div>
         <div className="stack-card">
           <strong>SQLite local demo</strong>
-          <p>Runnable here today, with Postgres schema and Docker Compose included for deployment discussion.</p>
+          <p>Runnable locally today, with hosted Postgres support available for deployment.</p>
         </div>
         <div className="stack-card">
           <strong>Docker path</strong>

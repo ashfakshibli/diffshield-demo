@@ -11,10 +11,10 @@ from app.pipeline.run_scan import execute_scan
 ROOT = Path(__file__).resolve().parents[3]
 DEMO_TARGET_REPO = os.environ.get(
     "DEMO_TARGET_REPO",
-    str(ROOT.parent / "diffshield-vuln-demo"),
+    "https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo",
 )
-HOST = os.environ.get("ANALYZER_HOST", "127.0.0.1")
-PORT = int(os.environ.get("ANALYZER_PORT", "8001"))
+HOST = os.environ.get("ANALYZER_HOST", "0.0.0.0")
+PORT = int(os.environ.get("PORT") or os.environ.get("ANALYZER_PORT", "8001"))
 
 
 def json_response(handler: BaseHTTPRequestHandler, status: int, payload):
@@ -200,7 +200,11 @@ class AnalyzerHandler(BaseHTTPRequestHandler):
         notes = payload.get("notes", "")
 
         if not repo_path:
-            return json_response(self, 400, {"error": "repoPath is required when useSample is false"})
+            return json_response(
+                self,
+                400,
+                {"error": "repoPath is required when useSample is false; it may be a local path or a public GitHub repo URL"},
+            )
 
         try:
             result = execute_scan(repo_path, notes)
@@ -218,4 +222,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
