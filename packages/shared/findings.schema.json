@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DiffShieldFinding",
+  "type": "object",
+  "required": ["title", "severity", "confidence", "attack_path", "evidence", "remediation"],
+  "properties": {
+    "title": { "type": "string" },
+    "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "confidence": { "type": "number" },
+    "attack_path": { "type": "string" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "remediation": { "type": "array", "items": { "type": "string" } }
+  }
+}
+

@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: diffshield-db
+    environment:
+      POSTGRES_DB: diffshield
+      POSTGRES_USER: diffshield
+      POSTGRES_PASSWORD: diffshield
+    ports:
+      - "5434:5432"
+    volumes:
+      - diffshield_postgres:/var/lib/postgresql/data
+      - ./schema.postgres.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+  analyzer:
+    build:
+      context: ../services/analyzer
+      dockerfile: Dockerfile
+    environment:
+      ANALYZER_HOST: 0.0.0.0
+      ANALYZER_PORT: 8001
+      DEMO_TARGET_REPO: /workspace/target
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4.1-mini}
+    ports:
+      - "8001:8001"
+    volumes:
+      - ../sample-target:/workspace/target:ro
+
+  web:
+    build:
+      context: ../apps/web
+      dockerfile: Dockerfile
+    environment:
+      ANALYZER_URL: http://analyzer:8001
+      NEXT_PUBLIC_DEMO_TARGET_REPO: /workspace/target
+    ports:
+      - "3007:3007"
+    depends_on:
+      - analyzer
+
+volumes:
+  diffshield_postgres:
+

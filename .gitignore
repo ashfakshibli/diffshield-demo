@@ -1,0 +1,15 @@
+.DS_Store
+node_modules
+.next
+dist
+*.log
+.env.local
+.env
+apps/web/.next
+apps/web/node_modules
+infra/*.sqlite3
+infra/*.db
+services/analyzer/__pycache__
+services/analyzer/app/__pycache__
+services/analyzer/app/**/*.pyc
+
