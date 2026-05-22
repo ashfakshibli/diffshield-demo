@@ -24,25 +24,31 @@ cd apps/web
 npm install
 ```
 
-2. Start the analyzer:
+2. Add local runtime vars at the repo root:
 
 ```bash
-cd ../../services/analyzer
-python3 -m app.main
+cp .env.example .env.local
 ```
 
-3. Start the web app:
+3. Set `OPENAI_API_KEY` in `.env.local` if you want the validator to use the OpenAI pass.
+
+4. Start the full demo:
 
 ```bash
-cd ../../apps/web
-npm run dev
+./run-demo.sh
 ```
 
-4. Open `http://localhost:3007`
+5. Open `http://localhost:3007`
 
-5. Run the built-in scan against:
+6. Run the built-in scan against:
 
 `/Users/ashfak/Desktop/Jobs/Latent Defense/diffshield-vuln-demo`
+
+If you want a fresh demo state before the interview:
+
+```bash
+RESET_DB=1 ./run-demo.sh
+```
 
 ## Demo flow
 
@@ -64,8 +70,7 @@ npm run dev
 ## Test commands
 
 ```bash
-cd services/analyzer
-python3 -m app.main
+./test-demo.sh
 ```
 
 ```bash
