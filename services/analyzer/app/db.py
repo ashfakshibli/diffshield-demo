@@ -13,7 +13,15 @@ except ImportError:  # pragma: no cover - optional in local SQLite mode
     dict_row = None
 
 
-ROOT = Path(__file__).resolve().parents[3]
+def _default_root() -> Path:
+    current = Path(__file__).resolve()
+    for candidate in current.parents:
+        if (candidate / "infra").exists():
+            return candidate
+    return current.parents[1]
+
+
+ROOT = Path(os.environ.get("DIFFSHIELD_ROOT", _default_root()))
 DATABASE_URL = os.environ.get("DATABASE_URL")
 DB_PATH = Path(os.environ.get("DIFFSHIELD_DB_PATH", ROOT / "infra" / "diffshield_demo.sqlite3"))
 DB_PATH.parent.mkdir(parents=True, exist_ok=True)

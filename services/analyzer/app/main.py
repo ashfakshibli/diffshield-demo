@@ -8,7 +8,15 @@ from app import db
 from app.pipeline.run_scan import execute_scan
 
 
-ROOT = Path(__file__).resolve().parents[3]
+def _default_root() -> Path:
+    current = Path(__file__).resolve()
+    for candidate in current.parents:
+        if (candidate / "infra").exists():
+            return candidate
+    return current.parents[1]
+
+
+ROOT = Path(os.environ.get("DIFFSHIELD_ROOT", _default_root()))
 DEMO_TARGET_REPO = os.environ.get(
     "DEMO_TARGET_REPO",
     "https://github.com/ashfakshibli/diffshield-vuln-demo",
