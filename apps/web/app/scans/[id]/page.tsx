@@ -173,10 +173,9 @@ export default async function ScanDetailPage({
       </div>
 
       <div className="footer-note">
-        This talking-demo MVP uses a local SQLite-backed analyzer today while preserving a
+        This compact demo uses a local SQLite-backed analyzer today while preserving a
         Postgres/Docker deployment path in the repo.
       </div>
     </div>
   );
 }
-

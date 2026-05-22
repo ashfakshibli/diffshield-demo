@@ -11,7 +11,7 @@ export function HomeClient() {
   const router = useRouter();
   const [repoPath, setRepoPath] = useState(defaultRepoPath);
   const [notes, setNotes] = useState(
-    "Interview demo scan: local toy repo with exposed admin route, broad env secrets, root container, and public internal port."
+    "Security demo scan: local toy repo with an exposed admin route, broad env secrets, a root container, and a public internal port."
   );
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState(false);
@@ -103,7 +103,7 @@ export function HomeClient() {
               </div>
             </div>
             <div className="metric">
-              <div className="label">Latent Defense talking points</div>
+              <div className="label">Security workflow signals</div>
               <div className="value" style={{ fontSize: "1.15rem" }}>
                 threat modeling, git integrations, agent workflows, remediation, telemetry
               </div>
@@ -116,7 +116,7 @@ export function HomeClient() {
         <section className="panel">
           <h2>Launch a scan</h2>
           <p>
-            For the interview demo, use the built-in vulnerable repo. You can also point
+            Use the built-in vulnerable repo for a quick security walkthrough. You can also point
             the analyzer at another local repo path without changing the product code.
           </p>
 
@@ -163,7 +163,7 @@ export function HomeClient() {
 
       <div className="section-header">
         <h2>Expected stack alignment</h2>
-        <span>Designed to mirror the interview role language</span>
+        <span>Designed to show a compact security systems workflow</span>
       </div>
       <div className="stack-grid">
         <div className="stack-card">
@@ -186,4 +186,3 @@ export function HomeClient() {
     </div>
   );
 }
-

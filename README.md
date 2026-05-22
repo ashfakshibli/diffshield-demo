@@ -1,6 +1,6 @@
 # DiffShield
 
-DiffShield is a lightweight repo threat modeler built as a talking-demo MVP for security/AI systems interviews.
+DiffShield is a lightweight repo threat modeler built as a compact security systems demo.
 
 It scans a local target repo, extracts a tiny world model from code and deployment artifacts, generates candidate attack paths, validates findings, and suggests remediations.
 
