@@ -5,7 +5,7 @@ import { startTransition, useState } from "react";
 
 const defaultRepoPath =
   process.env.NEXT_PUBLIC_DEMO_TARGET_REPO_REF ??
-  "https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo";
+  "https://github.com/ashfakshibli/diffshield-vuln-demo";
 
 export function HomeClient() {
   const router = useRouter();

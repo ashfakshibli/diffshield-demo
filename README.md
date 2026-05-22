@@ -42,7 +42,7 @@ npm run dev
 
 5. Run the built-in scan against:
 
-`https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo`
+`https://github.com/ashfakshibli/diffshield-vuln-demo`
 
 ## Demo flow
 

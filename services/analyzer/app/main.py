@@ -11,7 +11,7 @@ from app.pipeline.run_scan import execute_scan
 ROOT = Path(__file__).resolve().parents[3]
 DEMO_TARGET_REPO = os.environ.get(
     "DEMO_TARGET_REPO",
-    "https://github.com/ashfakshibli/latent-defense-diffshield-vuln-demo",
+    "https://github.com/ashfakshibli/diffshield-vuln-demo",
 )
 HOST = os.environ.get("ANALYZER_HOST", "0.0.0.0")
 PORT = int(os.environ.get("PORT") or os.environ.get("ANALYZER_PORT", "8001"))
